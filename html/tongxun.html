@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta content="telephone=no" name="format-detection">
+    <title>vue快速搭建</title>
+	<link rel="stylesheet" href="../static/css/reset.css">
+	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/animate.min.css">
+    <script src="../static/js/sea.js"></script>
+    <script src="../static/js/sea_config.js"></script> 
+    <script>
+        function rem(){
+            var deviceWidth = document.documentElement.clientWidth,
+            html = document.documentElement;
+
+            if(deviceWidth > 1024){
+                deviceWidth = 1024;
+                html.style.maxWidth = '1024px';
+                html.style.margin = '0 auto';
+            }
+            html.style.fontSize = deviceWidth / 7.5 + 'px';
+        }
+        rem();
+        window.addEventListener("resize", function() {
+            rem();
+        }, false);
+    </script>
+</head>
+<body>
+  
+<style>
+ #app{font-size:0.24rem;}
+ ul li{ list-style-type:none;}
+ .hide{display:none;}
+ span{ min-width:0.5rem; display:inline-block;height:0.3rem; line-height:0.3rem;}
+ .a{ border:1px solid  #000;width:2rem;height:2rem;}
+ ::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+::-webkit-scrollbar:horizontal {
+  height: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+</style>
+
+     <div id="app">
+        <div class="a" style="overflow:auto;width:300px;height:300px; -webkit-appearance: none;">
+         <span v-for="l in list" v-text="l.name" style="display: block;"></span>
+        </div>
+       <div><input type="text" v-model="val"><input type="button" value="发送" @click="tijiao"></div></div>
+     
+     <script>
+        // vue阻止事件冒泡 @click.stop="click()"
+        // vue 阻止默认行为 @click.prevent="click()"
+        // vue 只执行一次 @click.once="click()"
+		
+     	seajs.use(['vue','jquery','socket'],function(){
+			var socket = io('ws://192.168.1.101:8081');
+			 
+vue1 = new Vue ({
+     			el:'#app',
+     			data:{
+				val:'',
+				list:[],
+				d:'',
+				a:true,
+				c:true
+     			},
+     			mounted:function(){
+     				var _this = this;
+     				_this.$nextTick(function(){
+						console.log(socket)
+						socket.on('hehe',function(msg){
+							})
+						socket.on('list',function(msg){
+							if(vue1.list.length<msg.length){_this.c = true}
+							vue1.list = msg;
+							_this.d = vue1.list.length;
+							if(_this.c){
+								_this.$nextTick(function(){
+								$('.a').scrollTop($('.a')[0].scrollHeight);
+								})
+								}
+							/*if(_this.a == true){
+								console.log(12346)
+								_this.$nextTick(function(){
+								$('.a').scrollTop($('.a')[0].scrollHeight);
+								})
+								_this.a = false
+								}*/
+							})
+					   socket.on('disconnect',function(msg){
+							console.log("断开链接")
+							})
+					  
+     				});
+					
+     				 // 移动端下拉更新数据
+     				// window.addEventListener('scroll', function(){
+     				// 	var lazyheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+     				// 	if (($(document).height() - 150 <= lazyheight) && _this.runfalg) {
+     				// 		_this.runfalg = false;
+     				// 		_this.loadding = true;
+     				// 	}
+     				// });	
+     			},
+     			methods:{
+                  /*pulldown:function(show){
+					  var _this =this;
+					  },*/
+			     /*dblClick:function(a){
+					  var _this =this;
+					  console.log(_this,a)
+					  alert(123)
+					  },*/
+				tijiao:function(){
+					var _this = this;
+					if(_this.val){
+						socket.emit('send',_this.val)
+						_this.list.push({name:_this.val})
+						}
+					_this.$nextTick(function(){
+							$('.a').scrollTop($('.a')[0].scrollHeight);
+							})
+					}  
+				},
+                    /*filters:{
+                      //过滤器
+                      namber:function(num,i){
+                         console.log(num,i)
+                          return num.toFixed(i);
+                      }
+                    },*/
+				watch: {
+					list: function(v,u) {
+						console.log(v.length,1235456,this.d)
+						var _this = this;
+						console.log(v.length,this.d,707070)
+						if(_this.a == true){
+								console.log(12346)
+								_this.$nextTick(function(){
+								$('.a').scrollTop($('.a')[0].scrollHeight);
+								})
+								_this.a = false
+								}
+					}
+					
+                  },
+     			updated:function(){
+     				this.$nextTick(function(){
+						var _this = this;
+		        	// 滑动
+		        	// swiper();
+		        })
+     			}
+     		})
+			$('.a').scroll(function(event){
+               $(this).scrollTop($(this).scrollTop())
+			   vue1.c = false;
+            });
+  
+     	})
+     </script>
+
+<script type="text/javascript" src="../js/common754554c1.js?"></script></body>
+</html>

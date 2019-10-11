@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta content="telephone=no" name="format-detection">
+    <title>vue快速搭建</title>
+	<link rel="stylesheet" href="../static/css/reset.css">
+	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/animate.min.css">
+    <script src="../static/js/sea.js"></script>
+    <script src="../static/js/sea_config.js"></script> 
+    <script>
+        function rem(){
+            var deviceWidth = document.documentElement.clientWidth,
+            html = document.documentElement;
+
+            if(deviceWidth > 1024){
+                deviceWidth = 1024;
+                html.style.maxWidth = '1024px';
+                html.style.margin = '0 auto';
+            }
+            html.style.fontSize = deviceWidth / 7.5 + 'px';
+        }
+        rem();
+        window.addEventListener("resize", function() {
+            rem();
+        }, false);
+    </script>
+</head>
+<body>
+  
+<style>
+body{padding:0;margin:0;}
+#app{ overflow: hidden; font-size:12px}
+#tuodong {  height:200px;top:50%;left:50%; background:red;}
+#app{}
+#test{background:#fff;width:100%;margin:0 auto}
+img{width:500px;500px}
+.a{width:100px;height:100px;display: block;}
+.tangtuan{ position: fixed; width:100%;height:100%;left:0;top:0; background:#000; opacity:0.5;}
+.anniu{position: fixed;width:100px;height:100px; top:50%;left:50%; background:#FFF; z-index:5;margin-left:-50px;margin-top:-50px;}
+</style>
+
+     <div id="app">
+        
+         <div id="test" class="test">
+          <div id="tuodong"></div>
+        测试html5页面截图   
+        <img src="/static/images/butterfly.jpg">
+        <input class="example1" type="button" value="截图">
+        <img src class="img">
+        
+       <p style="overflow:auto">扯国旗扔入海的香港暴徒被捕：4男1女 身份曝光 
+2019-08-16 09:36
+12:51
+以严厉谴责，表示极少数极端激进分子侮辱国旗的丑陋行径再一次表明，他们的所作所为已经远远超出了自由表达意见的范畴，滑进犯罪的深渊。对此必须依法严厉惩处，绝不手软。
+中联办负责人也发表声明，严厉谴责香港极端激进分子侮辱国旗、挑战国家主权的违法行径。负责人强调，国家主权和尊严不容挑战，“一国两制”原则底线不容触碰，包括广大香港同胞在内的全体中国人的爱国情感不容肆意伤害，对这种无法无天的恶行必须依法严惩。
+香港中律协创会会长陈曼琪指出，根据香港特别行政区《国旗及国徽条例》第七条“保护国旗、国徽”，任何人公开及故意以焚烧、毁损、涂划、玷污、践踏等方式侮辱国旗或国徽，即属犯罪，一经定罪，可处第五级罚款及监禁3年。
+据海外网此前报道，香港警务处公共关系科高级警司江永祥15日表示，14日共拘捕17名人士，包括15名男性及2名女性，年龄在15至61岁，他们涉嫌非法集结、燃放炮竹、侮辱国旗、纵火等。自6月9日香港示威活动开始至14日，警方共拘捕香港激进示威者748人。（海外网 朱惠悦）
+本文系版权作品，未经授权严禁转载。海外视野，中国立场，登陆人民日报海外版官网——海外网www.haiwainet.cn或“海客”客户端，领先一步获取权威资讯。
+责编：朱惠悦、中联办负责人也发表声明，严厉谴责香港极端激进分子侮辱国旗、挑战国家主权的违法行径。负责人强调，国家主权和尊严不容挑战，“一国两制”原则底线不容触碰，包括广大香港同胞在内的全体中国人的爱国情感不容肆意伤害，对这种无法无天的恶行必须依法严惩。
+中联办负责人也发表声明，严厉谴责香港极端激进分子侮辱国旗、挑战国家主权的违法行径。负责人强调，国家主权和尊严不容挑战，“一国两制”原则底线不容触碰，包括广大香港同胞在内的全体中国人的爱国情感不容肆意伤害，对这种无法无天的恶行必须依法严惩。
+中联办负责人也发表声明，严厉谴责香港极端激进分子侮辱国旗、挑战国家主权的违法行径。负责人强调，国家主权和尊严不容挑战，“一国两制”原则底线不容触碰，包括广大香港同胞在内的全体中国人的爱国情感不容肆意伤害，对这种无法无天的恶行必须依法严惩。
+中联办负责人也发表声明，严厉谴责香港极端激进分子侮辱国旗、挑战国家主权的违法行径。负责人强调，国家主权和尊严不容挑战，“一国两制”原则底线不容触碰，包括广大香港同胞在内的全体中国人的爱国情感不容肆意伤害，对这种无法无天的恶行必须依法严惩。
+刘强</p>
+ <img src="/static/images/butterfly.jpg">
+    </div>
+       <div>
+      <div>
+      <a class="a" href="" download="downImg"></a>
+        <input class="anniu" type="button" value="确定截图 " style="display:none;">
+      <div class="tangtuan" style="display:none"></div> 
+      <div class="jietu" style="width:100px;height:100px; position:fixed; top:50%; left:50%; margin-left:-50px;margin-top:-50px;background:#fff; text-align:center;line-height:100px; display:none;">截图中</div>  
+      </div>
+      
+      <script> 
+	  /*winHeight = window.innerHeight;
+document.getElementById("test").style.height=winHeight+'px';*/
+</script>
+     <script>
+        // vue阻止事件冒泡 @click.stop="click()"
+        // vue 阻止默认行为 @click.prevent="click()"
+        // vue 只执行一次 @click.once="click()"
+		
+     	seajs.use(['vue','jquery','html2canvas'],function(){
+	      
+			 console.log(document.getElementById("test").offsetWidth)
+vue1 = new Vue ({
+     			el:'#app',
+     			data:{
+				val:'',
+				list:[],
+				d:'',
+				a:true,
+				c:true
+     			},
+     			mounted:function(){
+		            var _this = this;
+	var t,id;
+	
+		var main = {
+        init:function(){
+            main.setListener();
+        },
+        //设置监听事件
+        setListener:function(){
+            $('.example1').click(function(){
+				$('.anniu').show();
+		        $('.tangtuan').show();
+				
+				main.html2Canvas();
+				
+				
+				})
+        },
+        //获取像素密度
+        getPixelRatio:function(context){
+            var backingStore = context.backingStorePixelRatio ||
+                    context.webkitBackingStorePixelRatio ||
+                    context.mozBackingStorePixelRatio ||
+                    context.msBackingStorePixelRatio ||
+                    context.oBackingStorePixelRatio ||
+                    context.backingStorePixelRatio || 1;
+            return (window.devicePixelRatio || 1) / backingStore;
+        },
+        //绘制dom 元素，生成截图canvas
+        html2Canvas: function () {
+            var shareContent = document.getElementById("test");// 需要绘制的部分的 (原生）dom 对象 ，注意容器的宽度不要使用百分比，使用固定宽度，避免缩放问题
+            var width = shareContent.offsetWidth;  // 获取(原生）dom 宽度
+            var height = shareContent.offsetHeight; // 获取(原生）dom 高
+            var offsetTop = shareContent.offsetTop;  //元素距离顶部的偏移量
+
+            var canvas = document.createElement('canvas');  //创建canvas 对象
+            var context = canvas.getContext('2d');
+            var scaleBy = main.getPixelRatio(context);  //获取像素密度的方法 (也可以采用自定义缩放比例)
+            canvas.width = width * scaleBy;   //这里 由于绘制的dom 为固定宽度，居中，所以没有偏移
+            canvas.height = (height + offsetTop) * scaleBy;  // 注意高度问题，由于顶部有个距离所以要加上顶部的距离，解决图像高度偏移问题
+            context.scale(scaleBy, scaleBy);
+			
+            var opts = {
+                allowTaint:true,//允许加载跨域的图片
+                tainttest:true, //检测每张图片都已经加载完成
+                scale:scaleBy, // 添加的scale 参数
+                canvas:canvas, //自定义 canvas
+                logging: true, //日志开关，发布的时候记得改成
+				backgroundColor:"#fff",
+                width:width, //dom 原始宽度
+                height:height, //dom 原始高度
+				onrendered: function (canvas) {
+                        canvas.id = "mycanvas";
+                        //document.body.appendChild(canvas);
+                        //生成base64图片数据
+                        var dataUrl = canvas.toDataURL();
+						
+/*							var newImg = $("a");
+*/							console.log(dataUrl,context)
+						    
+							
+							
+                       /* newImg.href = dataUrl;*/
+					      if($('.a').attr('href')==""){
+							  document.querySelector(".a").setAttribute('href',canvas.toDataURL());
+							  t = true;
+							  }
+                        /*document.body.appendChild(newImg);*/
+/*						document.querySelector(".img").setAttribute('src',canvas.toDataURL());
+*/           
+                    }
+				
+            };
+            html2canvas(shareContent, opts)/*.then(function (canvas) {
+                var body = document.getElementsByTagName("body");
+                body[0].appendChild(canvas);
+            });*/
+			
+        }
+    };
+
+    //最后运行代码
+    main.init();
+		
+    
+			
+			
+			
+			$(document).on('click','.anniu',function(){
+				        $('.tangtuan').hide();
+						$(this).hide();
+						$('.jietu').show();
+					    $('.tangtuan').show();
+                        
+								var id=setInterval(function(){
+									   if(t){
+										 window.clearInterval(id);
+										 $('.jietu').hide();
+										 $('.tangtuan').hide();
+										 $('.a')[0].click();
+								        }
+									 },1000);
+								
+				})
+			   
+				     $('.tangtuan').click(function(){
+						$('.anniu').hide();
+						$(this).hide();
+						})
+			        
+     				_this.$nextTick(function(){
+					   
+     				});
+					
+     				 // 移动端下拉更新数据
+     				// window.addEventListener('scroll', function(){
+     				// 	var lazyheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+     				// 	if (($(document).height() - 150 <= lazyheight) && _this.runfalg) {
+     				// 		_this.runfalg = false;
+     				// 		_this.loadding = true;
+     				// 	}
+     				// });	
+     			},
+     			methods:{
+                  /*pulldown:function(show){
+					  var _this =this;
+					  },*/
+			     /*dblClick:function(a){
+					  var _this =this;
+					  console.log(_this,a)
+					  alert(123)
+					  },*/
+				},
+                    /*filters:{
+                      //过滤器
+                      namber:function(num,i){
+                         console.log(num,i)
+                          return num.toFixed(i);
+                      }
+                    },*/
+				watch: {
+					
+                  },
+     			updated:function(){
+     				this.$nextTick(function(){
+						var _this = this;
+		        	// 滑动
+		        	// swiper();
+		        })
+     			}
+     		})  
+     	})
+     </script>
+
+<script type="text/javascript" src="../js/common754554c1.js?"></script></div></div></body>
+</html>

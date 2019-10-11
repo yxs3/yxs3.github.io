@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta content="telephone=no" name="format-detection">
+    <title>vue快速搭建</title>
+	<link rel="stylesheet" href="../static/css/reset.css">
+	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/animate.min.css">
+    <script src="../static/js/sea.js"></script>
+    <script src="../static/js/sea_config.js"></script> 
+    <script>
+        function rem(){
+            var deviceWidth = document.documentElement.clientWidth,
+            html = document.documentElement;
+
+            if(deviceWidth > 1024){
+                deviceWidth = 1024;
+                html.style.maxWidth = '1024px';
+                html.style.margin = '0 auto';
+            }
+            html.style.fontSize = deviceWidth / 7.5 + 'px';
+        }
+        rem();
+        window.addEventListener("resize", function() {
+            rem();
+        }, false);
+    </script>
+</head>
+<body>
+  
+<style>
+ #app{font-size:0.24rem;}
+ ul li{ list-style-type:none;}
+ .hide{display:none;}
+ span{ min-width:0.5rem; display:inline-block;height:0.3rem; line-height:0.3rem;}
+</style>
+     <div id="app">
+          <div v-text="d"></div>
+          <!--<div v-text="$options.filters.namber(1.564564,5)"></div>-->
+          <div class="add" @click="add">添加</div>
+          <div class="remove">删除</div>
+          <tree :folder="list" :select="select" :clicks="clicks"></tree>
+          <!--<div class="b" style=" width:100px;height:100px;background:#000;"></div>
+          <div class="vo" style="width:100px;height:100px;background:#000; margin-top:20px;">
+            <ul>
+               <li>dasdhj</li>
+               <li>dasdhj</li>
+               <li>dasdhj</li>
+               <li>dasdhj</li>
+               <li>dasdhj</li>
+            </ul>
+          </div>-->
+          <!--<img src="{{if String}}..{{/if}}/static/images/butterfly.jpg">-->
+          <!--<ul>
+            <li class="father" v-for="l in list" >
+              <span v-text="l.name"  contenteditable="false" ></span>
+              <ul class="son hide">
+                <li  v-for="(k,i) in l.son" v-if="l.son!='null'&& l.son.length>0">
+                   <span v-text="k.name" contenteditable="false"></span>
+              </ul>
+            </li>
+          </ul>-->
+     </div>
+     <script>
+        // vue阻止事件冒泡 @click.stop="click()"
+        // vue 阻止默认行为 @click.prevent="click()"
+        // vue 只执行一次 @click.once="click()"
+     	seajs.use(['vue','jquery'],function(){
+		Vue.component('tree', {
+				name:"tree",
+				template:'<ul ><li v-for = "item in folder" class="father"><span @blur = "select(item,$event)" @click="clicks(item,$event)"contenteditable="false"v-text="item.name"></span><tree class="son hide" v-if = "item.son" :folder = "item.son" :select = "select" :clicks="clicks"></tree></li></ul>',
+				props:["folder","select",'clicks'],
+			  })
+
+
+    window.vue1 = new Vue ({
+     			el:'#app',
+     			data:{
+     				d:'webpack',
+					data:[],
+					b:'',
+					u:'',
+					t:'',
+					list:[
+					  {name:"岗位",son:[
+					   {name:"职位",son:[
+					                {name:'找开发和',son:[{name:'1235',son:[{name:'999',son:[{name:"45454"}]}]}]},
+									{name:'找开发和'},
+									{name:'找开发和'}
+					                  ]
+					   },
+					   {name:"职位"},
+					   {name:"职位"}
+					  ]
+					  },
+					  {name:"岗位",son:[
+					  {name:"职位"}
+					  ]},
+					  {name:"岗位",son:[
+					  {name:"职位"}
+					  ]},
+					]
+     			},
+     			mounted:function(){
+     				var _this = this;
+					/*$('.b').mousemove(function(){
+						event.stopPropagation()
+						$('.vo').show();
+						
+						})
+					$(document).on('mouseout','.vo',function(){
+						 var s = event.toElement || event.relatedTarget; 
+						 console.log(event.toElement,event.relatedTarget,this.contains(s))
+                    if (!this.contains(s)) { $('.vo').hide(); } 
+						})*/
+     				this.$nextTick(function(){
+                       console.log(_this.list,vue1.u);
+     				});
+     				 // 移动端下拉更新数据
+     				// window.addEventListener('scroll', function(){
+     				// 	var lazyheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+     				// 	if (($(document).height() - 150 <= lazyheight) && _this.runfalg) {
+     				// 		_this.runfalg = false;
+     				// 		_this.loadding = true;
+     				// 	}
+     				// });	
+     			},
+     			methods:{
+                  /*pulldown:function(show){
+					  var _this =this;
+					  },*/
+			     /*dblClick:function(a){
+					  var _this =this;
+					  console.log(_this,a)
+					  alert(123)
+					  },*/
+				  select:function(data,s){
+					  var _this =this;
+					  console.log(data.name,s.srcElement.innerText,s)
+					  data.name = s.srcElement.innerText;
+					  },
+				 clicks:function(data,s){
+					 var _this =this;
+					 console.log(data)
+					 _this.lists =  data;
+					 _this.t = s.srcElement;
+					 },
+			     add:function(){
+					 var _this =this;
+					  if(_this.lists.son ==null){
+                            /*_this.lists.son = new Array();*/
+							/*_this.lists.son.push({name:'苏打水'})*/
+							var el = _this.t;
+							Vue.set(_this.lists,'son',[{name:""}])
+						  }else{
+					  _this.lists.son.push({name:''});
+					  
+					  }
+					  setTimeout(function(){
+                                     $(_this.t).next('.son').removeClass('hide');
+									 var b = $(_this.t).next('.son').find('span').length;
+									 $(_this.t).next('.son').find('span').eq(b-1).attr("contenteditable","true");
+									 $(_this.t).next('.son').find('span').eq(b-1).focus();
+                             },100);
+					 }
+     			},
+				
+                    /*filters:{
+                      //过滤器
+                      namber:function(num,i){
+                         console.log(num,i)
+                          return num.toFixed(i);
+                      }
+					  
+
+                    },*/
+				
+     			updated:function(){
+					
+     				this.$nextTick(function(){
+						var _this = this;
+						
+		        	// 滑动
+		        	// swiper();
+		        })
+     			}
+     		})
+		$(document).on('click','.father span,.son',function(){
+			     var i = $(this).index();
+			     $(this).css('color','red').siblings().find('span').css('color','#000').parents('.father').siblings().find('span').css('color','#000');
+				 $(this).parents('ul').siblings('span').css('color','#000');
+				 $(this).parents('li').siblings().find('span').css('color','#000');
+				 console.log()
+				 if($(this).attr('contenteditable') =='false'){
+					 $(this).siblings().toggleClass('hide');
+				     $(this).parents('.father').siblings().find('.son').addClass('hide');
+					 $(this).siblings().find('span').attr('contenteditable','false');
+					 $(this).parents('ul').siblings('span').attr('contenteditable','false');
+					 $(this).parents('.father').siblings().find('span').attr('contenteditable','false')
+					 }else{
+						 $(this).css('color','#000')
+						 }
+				$(this).blur(function(){
+					$(this).attr('contenteditable','false');
+					$(this).css('color','red')
+					/*console.log(vue1.list[0].name,i,vue1.list[i].name)
+					vue1.list[i].name = $(this).text();*/
+					})
+			/*数据*/
+			
+			
+			/*for(key in vue1.list){
+				vue1.list[i].name =''
+				
+				}*/
+			     /*$(this).find('.son').removeClass('hide').parents('.father').siblings().find('.son').addClass('hide');*/
+			})
+		$(document).on('dblclick','.father span,.son span',function(){
+			$(this).attr('contenteditable','true');
+			/*console.log($(this).index())
+			$(this).blur(function(){
+				    vue1.t = $(this).text();
+					console.lossg(vue1.t)
+					})*/
+			/*$(this).focus(function(){
+				if($(this).text()==''){
+				  alert('不能为空')
+				  return false;
+				  }
+				})*/
+				
+			})
+     	})
+     </script>
+
+<script type="text/javascript" src="../js/common754554c1.js?"></script></body>
+</html>
