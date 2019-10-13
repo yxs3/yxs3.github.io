@@ -1,9 +1,9 @@
 .fs-16{font-size:0.16rem;}
 .jl .swiper-slide{ position:relative;}
 .jl .face-1{ position:relative;}
-.jl .face-1 img{position:absolute;width:50%;top:0;}
+.jl .face-1 img{position:absolute;width:50.2%;top:0;}
 .jl .face-1 img:nth-child(1){left:0;}
-.jl .face-1 img:nth-child(2){right:0;width:50.2%;}
+.jl .face-1 img:nth-child(2){right:0;}
 .jl .swiper-slide{background:#fff; overflow:hidden;}
 .jl .face-1{height:100%;background:#fff;}
 .jl .bottom-sizi{ position:absolute; color:#000; bottom:0.3rem;right:0.4rem; line-height:0.5rem;}
