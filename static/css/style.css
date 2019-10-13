@@ -1,8 +1,8 @@
 .fs-16{font-size:0.16rem;}
 .jl .swiper-slide{ position:relative;}
 .jl .face-1 img{float:left;width:50%;}
-.jl .face-1 img:nth-child(1){margin-left:1px;}
-.jl .face-1 img:nth-child(2){margin-left:-1px;}
+.jl .face-1 img:nth-child(1){margin-left:0.01rem;}
+.jl .face-1 img:nth-child(2){margin-left:-0.02rem;}
 .jl .swiper-slide{background:#fff; overflow:hidden;}
 .jl .face-1{height:100%;background:#fff;}
 .jl .bottom-sizi{ position:absolute; color:#000; bottom:0.3rem;right:0.4rem; line-height:0.5rem;}
